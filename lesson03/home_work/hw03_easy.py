@@ -5,8 +5,12 @@
 # Для решения задачи не используйте встроенные функции и функции из модуля math.
 
 def my_round(number, ndigits):
-    pass
+    mid_res = number*(10**ndigits)
+    perc = mid_res%1
+    if perc > 0.5:
+        mid_res += 1
 
+    return int(mid_res)/(10**ndigits)
 
 print(my_round(2.1234567, 5))
 print(my_round(2.1999967, 5))
@@ -20,8 +24,13 @@ print(my_round(2.9999967, 5))
 # !!!P.S.: функция не должна НИЧЕГО print'ить
 
 def lucky_ticket(ticket_number):
-    pass
-
+    ticket_num = str(ticket_number)
+    first_part = sum(map(int, ticket_num[:3]))
+    sec_part = sum(map(int, ticket_num[3:]))
+    if first_part == sec_part:
+        return "Lucky ticket!"
+    else:
+        return "Unlucky ticket:("
 
 print(lucky_ticket(123006))
 print(lucky_ticket(12321))
