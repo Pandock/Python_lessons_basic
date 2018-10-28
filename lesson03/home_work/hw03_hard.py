@@ -9,6 +9,85 @@
 # Ввод: -2/3 - -2
 # Вывод: 1 1/3
 
+a = input('Введите дроби. Дроби вводятся в формате:\n'
+              'n x/y ,где n - целая часть, x - числитель, у - знаменатель.\n'
+              'Дроби могут быть отрицательные и не иметь целой части, или иметь только целую часть.')
+
+# Примеры:
+# Ввод: 5/6 + 4/7 (всё выражение вводится целиком в виде строки)
+# Вывод: 1 17/42  (результат обязательно упростить и выделить целую часть)
+# Ввод: -2/3 - -2
+# Вывод: 1 1/3
+plus = 1
+if '+' in a:
+    start = a.split('+')
+else:
+    start = a.split('-')
+    plus = 0
+
+# first part
+part_one = start[0].split()
+n_first = int()
+
+# searching for n
+if '/' in part_one[0]:
+    n_first = 0
+else:
+    n_first = int(part_one[0])
+    part_one.pop(0)
+
+
+if len(part_one) != 0:
+    x_first, y_first = part_one[0].split('/')
+    x_first = int(x_first)
+    y_first = int(y_first)
+else:
+    x_first, y_first = 0, 0
+#
+# second part!!
+part_two = start[1].split()
+n_sec = int()
+
+# searching for n
+if '/' in part_two[0]:
+    n_sec = 0
+else:
+    n_sec = int(part_two[0])
+    part_two.pop(0)
+
+if n_sec < 0 and plus == 1:
+    n_sec = n_sec * (-1)
+    plus = 0
+elif n_sec < 0 and plus == 0:
+    n_sec = n_sec * (-1)
+    plus = 1
+
+
+if len(part_two) != 0:
+    x_sec, y_sec = part_two[0].split('/')
+    x_sec = int(x_sec)
+    y_sec = int(y_sec)
+    if x_sec < 0 and plus == 1:
+        x_sec = x_sec * (-1)
+        plus = 0
+    elif x_sec < 0 and plus == 0:
+        x_sec = x_sec * (-1)
+        plus = 1
+else:
+    x_sec, y_sec = 0, 0
+
+# the MATH
+n_res = n_first + n_sec
+y_res = y_first * y_sec
+x_res = (x_first * y_sec) + (x_sec * y_first)
+
+if x_res > y_res:
+    n_res += x_res//y_res
+    x_res = x_res % y_res
+
+
+
+Как считать, если первая дробь отрицательная - не понял, думал долго, сдаюсь.
 
 # Задание-2:
 # Дана ведомость расчета заработной платы (файл "data/workers").
@@ -18,6 +97,8 @@
 # они получают удвоенную ЗП, пропорциональную норме.
 # Кол-во часов, которые были отработаны, указаны в файле "data/hours_of"
 
+Логику задания понял.
+Не ясно, нужно ли информацию вытаскивать из файла с помощью программы или вручную.
 
 # Задание-3:
 # Дан файл ("data/fruits") со списком фруктов.
@@ -31,3 +112,5 @@
 # Подсказка:
 # Чтобы получить список больших букв русского алфавита:
 # print(list(map(chr, range(ord('А'), ord('Я')+1))))
+
+Не понял.
